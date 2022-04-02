@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TweetWebapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+  <header>
+  <div class="header-logo">
+    <%= link_to "TweetApp", "/" %>
+  </div>
+  <ul class="header-menus">
+    <li>
+      <%= link_to "About", "/about" %>
+    </li>
+    <li>
+      <%= link_to "Posts", "/post/index" %>
+    </li>
+    <li>
+      <%= link_to "New post", "/post/new" %>
+    </li>
+  </ul>
+</header>
+<% if flash[:notice] %>
+<div class="flash">
+<%= flash[:notice] %>
+<% end %>
+</div>
+    <%= yield %>
+  </body>
+</html>
