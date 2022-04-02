@@ -82,6 +82,15 @@
     font-size: 14px;
 }
 
+.post-menus button {
+    color: #8899a6;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
 /* posts/new ================================ */
 .posts-new textarea {
     font-size: 20px;

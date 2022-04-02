@@ -6,12 +6,17 @@ class PostController < ApplicationController
     @post = Post.find_by(id: params[:id])
   end
   def new
-
+    @post = Post.new
   end
   def create
     @post = Post.new(content: params[:content])
-    @post.save
-    redirect_to("/post/index")
+    
+    if @post.save
+      flash[:notice] = "Post successfully created"
+      redirect_to("/post/index")
+    else
+      render("post/new")
+    end
   end
   def edit
     @post = Post.find_by(id: params[:id])
@@ -23,13 +28,14 @@ class PostController < ApplicationController
       flash[:notice] = "Post successfully edited"
       redirect_to("/post/index")
     else
-      render('/post/edit')
+      render('post/edit')
     end
     
   end
   def destroy
     @post = Post.find_by(id: params[:id])
     @post.destroy
+    flash[:notice] = "Post successfully deleted"
     
     redirect_to("/post/index")
   end
