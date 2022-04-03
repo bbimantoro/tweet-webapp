@@ -17,6 +17,9 @@
         <p>Email</p>
         <!-- Create a single line input form using <input> -->
         <input name="email" class="<%= @user.email %>">
+        <p>Password</p>
+        <!-- Add an <input> tag for the password -->
+        <input type="password" name="password" value="<%= @user.password %>">
         
         <input type="submit" value="Sign up">
         <% end %>
