@@ -60,16 +60,14 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_by(
-      email: params[:email],
-      password: params[:password])
+    @user = User.find_by(email: params[:email])
 
-      if @user
+      if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
         flash[:notice] = "You have logged in successfully"
         redirect_to("/post/index")
       else
-        @error_message = "Invalid email/password combination"
+        @error_message = "Wrong email or password"
         @email = params[:email]
         @password = params[:password]
         render("users/login_form")
@@ -80,6 +78,11 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     flash[:notice] = "You have logged out successfully"
     redirect_to("/login")
+  end
+
+  def likes
+    @user = User.find_by(id: params[:id])
+    @likes = Like.where(user_id: @user.id)
   end
 
   def ensure_correct_user

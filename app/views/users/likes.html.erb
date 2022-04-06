@@ -1,23 +1,25 @@
 <div class="main user-show">
   <div class="container">
     <div class="user">
-      <img src="<%= "/user_images/#{@user.image_name}" %>" alt="profile">
-      <!-- Display the @user's name -->
+      <img src="<%= "/user_images/#{@user.image_name}" %>">
       <h2><%= @user.name %></h2>
-      <!-- Display the @user's email -->
       <p><%= @user.email %></p>
       <% if @user.id == @current_user.id %>
         <%= link_to("Edit", "/users/#{@user.id}/edit") %>
       <% end %>
     </div>
-
+    
     <ul class="user-tabs">
-      <li class="active"><%= link_to("Posts", "/users/#{@user.id}") %></li>
-      <li><%= link_to("Likes", "/users/#{@user.id}/likes") %></li>
+      <li><%= link_to("Posts", "/users/#{@user.id}") %></li>
+      <li class="active"><%= link_to("Likes", "/users/#{@user.id}/likes") %></li>
     </ul>
-
-    <% @user.posts.each do |post| %>
-     <div class="posts-index-item">
+    
+    <!-- Get each element of @likes using the each method -->
+    <% @likes.each do |like| %>
+      <!-- Define the post variable -->
+      <% post = Post.find_by(id: like.post_id) %>
+      
+      <div class="posts-index-item">
         <div class="post-left">
           <img src="<%= "/user_images/#{post.user.image_name}" %>">
         </div>
@@ -25,9 +27,10 @@
           <div class="post-user-name">
             <%= link_to(post.user.name, "/users/#{post.user.id}") %>
           </div>
-          <%= link_to(post.content, "/post/#{post.id}") %>
+          <%= link_to(post.content, "/posts/#{post.id}") %>
         </div>
       </div>
-      <% end %>
+    <!-- Add an end statement -->
+    <% end %>
   </div>
 </div>

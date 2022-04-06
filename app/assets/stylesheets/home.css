@@ -207,6 +207,16 @@ header {
     border-radius: 2px;
 }
 
+.header-menus button {
+    float: left;
+    border: none;
+    margin-top: 23px;
+    background: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+}
+
 .form textarea {
     width: 100%;
     min-height: 110px;
